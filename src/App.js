@@ -8,7 +8,7 @@ class App extends Component {
 
   state = {
     imageSearch: '',
-    largeImage: '',
+    largeImageURL: '',
     showModal: false,
   }
 
@@ -23,16 +23,16 @@ class App extends Component {
     console.log(imageSearch);
   };
 
-  setTarget = largeImage => {
-    this.setState({ largeImage, showModal: true });
+  setLargeImage = largeImageURL => {
+    this.setState({ largeImageURL, showModal: true });
   };
 
   render() {
     return (
       <div>
         <Searchbar onSubmit={this.handleFormSubmit}/>
-        <ImageGallery imageSearch={this.state.imageSearch} onClick={this.setTarget} />
-        {this.state.showModal && (<Modal onClose={this.toggleModal}><img src={this.state.largeImage} alt=""/></Modal>)}
+        <ImageGallery imageSearch={this.state.imageSearch} onClick={this.setLargeImage} />
+        {this.state.showModal && (<Modal onClose={this.toggleModal}><img src={this.state.largeImageURL} alt=""/></Modal>)}
       </div>
       );
   }

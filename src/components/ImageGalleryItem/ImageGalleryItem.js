@@ -1,12 +1,11 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import s from './ImageGalleryItem.module.css';
 
 function ImageGalleryItem({ img: {
     tags,
     webformatURL,
-    onClick,
-  largeImageURL,
-}, 
+    largeImageURL,
+}, onClick,
 }) {
   return (
       <li className={s.ImageGalleryItem}
