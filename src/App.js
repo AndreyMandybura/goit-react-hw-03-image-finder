@@ -23,7 +23,7 @@ class App extends Component {
     console.log(imageSearch);
   };
 
-  setLargeImage = largeImageURL => {
+  setLargeImage = ({largeImageURL}) => {
     this.setState({ largeImageURL, showModal: true });
   };
 

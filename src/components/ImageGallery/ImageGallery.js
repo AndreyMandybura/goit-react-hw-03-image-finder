@@ -2,6 +2,8 @@ import { Component } from "react";
 import ApiService from '../../services/api';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import Button from '../Button/Button';
+import Loader from "react-loader-spinner";
+import PropTypes from "prop-types";
 import s from './ImageGallery.module.css';
 
 const apiService = new ApiService();
@@ -23,9 +25,9 @@ class ImageGallery extends Component {
 
         if (prevName !== nextName) {
             this.setState({ status: 'pending' });
-            apiService.fetchImage(nextName)
-                .then(gallery => this.setState({ gallery, status: 'resolved' }))
-                .catch(error => this.setState({ error, status: 'rejected' }))
+                apiService.fetchImage(nextName)
+                    .then(gallery => this.setState({ gallery, status: 'resolved' }))
+                    .catch(error => this.setState({ error, status: 'rejected' }))
         }
 
         if (prevPage !== nextPage) {
@@ -49,11 +51,19 @@ class ImageGallery extends Component {
         const { gallery, error, status } = this.state;
 
         if (status === 'idle') {
-            return <div>Введите имя покемона</div>
+            return <div></div>
         }
 
         if (status === 'pending') {
-            return <div>Загружаем</div>
+            return (
+                <Loader className={s.Loader}
+                    type="Puff"
+                    color="#00BFFF"
+                    height={250}
+                    width={250}
+                    timeout={3000}
+                />
+            );
         }
 
         if (status === 'rejected') {
@@ -61,8 +71,9 @@ class ImageGallery extends Component {
         }
 
          if (status === 'resolved') {
+             
              return (
-            <div>
+            <div className={s.GalleryBox}>
                 <ul className={s.ImageGallery}>
                      {gallery.map((img) => (
                          <ImageGalleryItem key={img.id} img={img} onClick={this.props.onClick}/>
@@ -76,5 +87,10 @@ class ImageGallery extends Component {
         }
 }
 }
+
+ImageGallery.propTypes = {
+  gallery: PropTypes.arrayOf(PropTypes.object),
+  onClickImage: PropTypes.func,
+};
 
 export default ImageGallery;

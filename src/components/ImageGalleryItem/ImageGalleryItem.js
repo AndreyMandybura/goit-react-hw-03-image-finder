@@ -1,4 +1,4 @@
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import s from './ImageGalleryItem.module.css';
 
 function ImageGalleryItem({ img: {
@@ -15,5 +15,12 @@ function ImageGalleryItem({ img: {
     </li>
   );
 }
+
+ImageGalleryItem.propTypes = {
+  tags: PropTypes.string,
+  largeImageURL: PropTypes.string,
+  werformatURL: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
 export default ImageGalleryItem;

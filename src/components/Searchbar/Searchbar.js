@@ -41,9 +41,8 @@ class Searchbar extends Component {
     }
 }
 
-// ContactList.propTypes = {
-//   contacts: PropTypes.arrayOf(PropTypes.object),
-//   onDeleteContact: PropTypes.func,
-// };
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func,
+};
 
 export default Searchbar;
